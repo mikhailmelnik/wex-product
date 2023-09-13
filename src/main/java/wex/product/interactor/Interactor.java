@@ -42,13 +42,17 @@ public final class Interactor {
     }
 
     public Command getCommand() throws CommandException {
-        return switch (launchParameters.command()) {
-            case null -> null;
-            case "reset" -> buildResetCommand();
-            case "store" -> buildStoreCommand();
-            case "retrieve" -> buildRetrieveCommand();
-            case default -> throw new CommandException(String.format("Unknown command %s.", launchParameters.command()));
-        };
+        var command = launchParameters.command();
+        if (command == null) {
+            return null;
+        } else {
+            return switch (command) {
+                case "reset" -> buildResetCommand();
+                case "store" -> buildStoreCommand();
+                case "retrieve" -> buildRetrieveCommand();
+                default -> throw new CommandException(String.format("Unknown command %s.", launchParameters.command()));
+            };
+        }
     }
 
     private ResetCommand buildResetCommand() {

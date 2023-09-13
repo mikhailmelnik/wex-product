@@ -23,12 +23,16 @@ public final class Runner {
     public void run() {
         try {
             var command = interactor.getCommand();
-            switch (command) {
-                case null -> interactor.printUsage();
-                case ResetCommand ignored -> resetStorage();
-                case StoreCommand c -> storeTransaction(c);
-                case RetrieveCommand c -> retrieveTransaction(c);
-                default -> throw new IllegalStateException(String.format("Unexpected command: %s", command.getClass().getName()));
+            if (command == null) {
+                interactor.printUsage();
+            } else if (command instanceof ResetCommand) {
+                resetStorage();
+            } else if (command instanceof StoreCommand) {
+                storeTransaction((StoreCommand) command);
+            } else if (command instanceof RetrieveCommand) {
+                retrieveTransaction((RetrieveCommand) command);
+            } else {
+                throw new IllegalStateException(String.format("Unexpected command: %s", command.getClass().getName()));
             }
         } catch (CommandException e) {
             interactor.printError(e);

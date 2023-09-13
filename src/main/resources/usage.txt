@@ -1,5 +1,5 @@
 
-Usage: java --enable-preview -jar ./app.jar <command> [<args>]
+Usage: java -jar ./app.jar <command> [<args>]
 
 Commands:
     reset       Wipe transaction storage
@@ -15,4 +15,3 @@ Examples:
     app.jar reset
     app.jar store --amount=101.87 --date=2023-08-27 --description=WALMART
     app.jar retrieve --id=a08e8d8f-e3af-4bf5-9901-55a6d2c3d1e8 --currency=Australia-Dollar
-

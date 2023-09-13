@@ -9,7 +9,7 @@ See [WEX TAG and Gateways Product Brief.pdf](docs%2FWEX%20TAG%20and%20Gateways%2
 ```shell
 mvn verify
 cd ./target
-java --enable-preview -jar ./app.jar
+java -jar ./app.jar
 ```
 
 ### Notes
